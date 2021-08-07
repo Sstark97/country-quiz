@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { getCountry } from "../actions";
 import quizImage from "../assets/static/quizImage.svg";
 import callingCodeData from "../data/callingCodeData";
-import AnswerInput from "./AnswerInput";
+import AnswerForm from "../containers/AnswersForm";
 
 const CountryQuiz = ({ getCountry, country }) => {
   const [typeArrayQuestion, setTypeQuestion] = useState(["capital", "flag"]);
@@ -69,28 +69,7 @@ const CountryQuiz = ({ getCountry, country }) => {
               lineHeight="3.6rem"
             >{`${country[0].capital} is the capital of`}</Text>
 
-            <List marginTop="3.2rem">
-              {answers.map((answer) => (
-                <ListItem
-                  key={answer.letter}
-                  width="40rem"
-                  height="5.6rem"
-                  border="2px solid rgba(96, 102, 208, 0.7)"
-                  borderRadius="1.2rem"
-                  _hover={{
-                    background: "#F9A826",
-                    cursor: "pointer",
-                    border: "none",
-                  }}
-                  display="flex"
-                  alignItems="center"
-                  marginBottom="2.5rem"
-                >
-                  {" "}
-                  <AnswerInput letter={answer.letter} country={answer.land} />
-                </ListItem>
-              ))}
-            </List>
+            <AnswerForm answers={answers} />
           </Flex>
         ) : (
           <Flex direction="column" margin="3.2rem">
@@ -112,29 +91,7 @@ const CountryQuiz = ({ getCountry, country }) => {
               >
                 Which country does these flag belong to?
               </Text>
-
-              <List marginTop="3.2rem">
-                {answers.map((answer) => (
-                  <ListItem
-                    key={answer.letter}
-                    width="40rem"
-                    height="5.6rem"
-                    border="2px solid rgba(96, 102, 208, 0.7)"
-                    borderRadius="1.2rem"
-                    _hover={{
-                      background: "#F9A826",
-                      cursor: "pointer",
-                      border: "none",
-                    }}
-                    display="flex"
-                    alignItems="center"
-                    marginBottom="2.5rem"
-                  >
-                    {" "}
-                    <AnswerInput letter={answer.letter} country={answer.land} />
-                  </ListItem>
-                ))}
-              </List>
+              <AnswerForm answers={answers} />
             </Flex>
           </Flex>
         )}
