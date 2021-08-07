@@ -6,7 +6,7 @@ import quizImage from "../assets/static/quizImage.svg";
 import callingCodeData from "../data/callingCodeData";
 import AnswerForm from "../containers/AnswersForm";
 
-const CountryQuiz = ({ getCountry, country }) => {
+const CountryQuiz = ({ getCountry, country, handleClickNextInMain }) => {
   const [typeArrayQuestion, setTypeQuestion] = useState(["capital", "flag"]);
   const [typeQuiz, setTypeQuizz] = useState(
     typeArrayQuestion[Math.floor(Math.random() * typeArrayQuestion.length)]
@@ -45,7 +45,7 @@ const CountryQuiz = ({ getCountry, country }) => {
         justifyContent="flex-end"
         position="absolute"
         top="14rem"
-        right="41.8rem"
+        marginLeft="2rem"
       >
         <Image src={quizImage} width="18.2rem" height="11.6rem" />
 
@@ -69,7 +69,10 @@ const CountryQuiz = ({ getCountry, country }) => {
               lineHeight="3.6rem"
             >{`${country[0].capital} is the capital of`}</Text>
 
-            <AnswerForm answers={answers} />
+            <AnswerForm
+              answers={answers}
+              handleClickNextInMain={handleClickNextInMain}
+            />
           </Flex>
         ) : (
           <Flex direction="column" margin="3.2rem">
@@ -91,7 +94,10 @@ const CountryQuiz = ({ getCountry, country }) => {
               >
                 Which country does these flag belong to?
               </Text>
-              <AnswerForm answers={answers} />
+              <AnswerForm
+                answers={answers}
+                handleClickNextInMain={handleClickNextInMain}
+              />
             </Flex>
           </Flex>
         )}

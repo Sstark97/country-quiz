@@ -5,13 +5,23 @@ import { v4 as uuidv4 } from "uuid";
 import { connect } from "react-redux";
 import { getCountry } from "../actions";
 
-const AnswerForm = ({ answers, getCountry, country }) => {
+const AnswerForm = ({
+  answers,
+  getCountry,
+  country,
+  handleClickNextInMain,
+}) => {
   const [clickAnswer, setClickAnswer] = useState(false);
   useEffect(() => {
     getCountry();
   });
   const handleClickAnswerInParent = () => {
     setClickAnswer(true);
+  };
+
+  const handleClickNext = () => {
+    setClickAnswer(false);
+    handleClickNextInMain();
   };
 
   return (
@@ -54,6 +64,7 @@ const AnswerForm = ({ answers, getCountry, country }) => {
             borderRadius="1.2rem"
             boxShadow="0px 2px 4px rgba(252, 168, 47, 0.4)"
             _hover={{ background: "#F9A826" }}
+            onClick={handleClickNext}
           >
             Next
           </Button>

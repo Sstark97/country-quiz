@@ -26,9 +26,17 @@ const useGetRandomCountry = () => {
 
         }
         fetchData();
-    },[]);
+    },[loading]);
 
-    return { response, error, loading };
+    const nextQuiz = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setCountry(callingCodeData[Math.floor(Math.random() * callingCodeData.length)]);
+            setLoading(false);
+        },700)
+    }
+
+    return { response, error, loading, nextQuiz };
 
 };
 
