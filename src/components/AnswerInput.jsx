@@ -8,8 +8,8 @@ const AnswerInput = ({
   clickAnswer,
   handleClickAnswerInParent,
 }) => {
-  const handleClickAnswer = () => {
-    handleClickAnswerInParent();
+  const handleClickAnswer = (letter) => {
+    handleClickAnswerInParent(letter);
   };
 
   return (
@@ -30,8 +30,9 @@ const AnswerInput = ({
           : null
       }
       height="100%"
-      onClick={handleClickAnswer}
-      background={clickAnswer ? (correct ? "#60BF88" : "#EA8282") : null}
+      onClick={(answer) => {
+        handleClickAnswer(letter);
+      }}
     >
       <InputLeftElement
         pointerEvents="none"
@@ -40,7 +41,6 @@ const AnswerInput = ({
         children={
           <Text fontSize="2.4rem" lineHeight="3.6rem">
             {letter}
-            {console.log(correct)}
           </Text>
         }
         marginRight="4.7rem"

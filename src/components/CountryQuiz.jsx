@@ -23,13 +23,14 @@ const CountryQuiz = ({ getCountry, country, handleClickNextInMain }) => {
             Math.floor(Math.random() * callingCodeData.length)
           ].name,
           letter: answer,
+          correct: false,
         })
       );
       const randomPos = Math.floor(Math.random() * randomAnswers.length);
-      console.log(country);
       randomAnswers.splice(randomPos, 1, {
         land: country[0].name,
         letter: randomAnswers[randomPos].letter,
+        correct: true,
       });
       setAnswers(randomAnswers);
     }
@@ -48,8 +49,6 @@ const CountryQuiz = ({ getCountry, country, handleClickNextInMain }) => {
         marginLeft="2rem"
       >
         <Image src={quizImage} width="18.2rem" height="11.6rem" />
-
-        {console.log(answers)}
       </Flex>
       <Flex
         width="46.4rem"

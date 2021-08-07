@@ -14,8 +14,12 @@ const AnswerForm = ({
   const [clickAnswer, setClickAnswer] = useState(false);
   useEffect(() => {
     getCountry();
-  });
-  const handleClickAnswerInParent = () => {
+  }, [clickAnswer]);
+  const handleClickAnswerInParent = (letter) => {
+    const answer = answers.find((answer) => answer.letter === letter);
+    const correct = answers.find((answer) => answer.correct);
+    answer.click = true;
+    correct.click = true;
     setClickAnswer(true);
   };
 
@@ -35,6 +39,13 @@ const AnswerForm = ({
             border="2px solid rgba(96, 102, 208, 0.7)"
             borderRadius="1.2rem"
             _hover={!clickAnswer ? { border: "none" } : null}
+            background={
+              answer.click !== undefined && answer.correct && clickAnswer
+                ? "#60BF88"
+                : answer.click !== undefined && !answer.correct && clickAnswer
+                ? "#EA8282"
+                : null
+            }
             display="flex"
             alignItems="center"
             marginBottom="2.5rem"
@@ -43,7 +54,7 @@ const AnswerForm = ({
             <AnswerInput
               letter={answer.letter}
               country={answer.land}
-              correct={country[0].name === answer.land ? true : false}
+              correct={answer.correct}
               clickAnswer={clickAnswer}
               handleClickAnswerInParent={handleClickAnswerInParent}
             />
