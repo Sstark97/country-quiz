@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Image, List, ListItem } from "@chakra-ui/react";
+import { Flex, Text, Image } from "@chakra-ui/react";
 import { connect } from "react-redux";
 import { getCountry } from "../actions";
 import quizImage from "../assets/static/quizImage.svg";
@@ -7,8 +7,8 @@ import callingCodeData from "../data/callingCodeData";
 import AnswerForm from "../containers/AnswersForm";
 
 const CountryQuiz = ({ getCountry, country, handleClickNextInMain }) => {
-  const [typeArrayQuestion, setTypeQuestion] = useState(["capital", "flag"]);
-  const [typeQuiz, setTypeQuizz] = useState(
+  const [typeArrayQuestion] = useState(["capital", "flag"]);
+  const [typeQuiz] = useState(
     typeArrayQuestion[Math.floor(Math.random() * typeArrayQuestion.length)]
   );
   const [answers, setAnswers] = useState(["A", "B", "C", "D"]);

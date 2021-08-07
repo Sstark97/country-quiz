@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Flex, Text, Spinner } from "@chakra-ui/react";
 import CountryQuiz from "../components/CountryQuiz";
 import useGetRandomCountry from "../hooks/useGetRandomCountry";
@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { setCountry } from "../actions";
 
 const Main = ({ setCountry }) => {
-  const { loading, response, error, nextQuiz } = useGetRandomCountry();
+  const { loading, response, nextQuiz } = useGetRandomCountry();
 
   if (!loading) {
     setCountry(response);

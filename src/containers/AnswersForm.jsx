@@ -5,12 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { connect } from "react-redux";
 import { getCountry } from "../actions";
 
-const AnswerForm = ({
-  answers,
-  getCountry,
-  country,
-  handleClickNextInMain,
-}) => {
+const AnswerForm = ({ answers, getCountry, handleClickNextInMain }) => {
   const [clickAnswer, setClickAnswer] = useState(false);
   useEffect(() => {
     getCountry();
