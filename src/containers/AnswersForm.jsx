@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex, List, ListItem, Button } from "@chakra-ui/react";
+import { Flex, List, ListItem, Button, useMediaQuery } from "@chakra-ui/react";
 import AnswerInput from "../components/AnswerInput";
 import { v4 as uuidv4 } from "uuid";
 import { connect } from "react-redux";
@@ -14,9 +14,12 @@ const AnswerForm = ({
   finished,
 }) => {
   const [clickAnswer, setClickAnswer] = useState(false);
+  const [isLargerThan600] = useMediaQuery("(min-width: 600px)");
+
   useEffect(() => {
     getCountry();
   }, [clickAnswer]);
+
   const handleClickAnswerInParent = (letter) => {
     const answer = answers.find((answer) => answer.letter === letter);
     const correct = answers.find((answer) => answer.correct);
@@ -37,11 +40,11 @@ const AnswerForm = ({
 
   return (
     <>
-      <List marginTop="3.2rem">
+      <List marginTop={isLargerThan600 ? "3.2rem" : "2rem"}>
         {answers.map((answer) => (
           <ListItem
             key={uuidv4()}
-            width="40rem"
+            width={isLargerThan600 ? "40rem" : "98%"}
             height="5.6rem"
             border="2px solid rgba(96, 102, 208, 0.7)"
             borderRadius="1.2rem"
@@ -69,7 +72,11 @@ const AnswerForm = ({
         ))}
       </List>
       {clickAnswer ? (
-        <Flex width="100%" height="5.6rem" justifyContent="flex-end">
+        <Flex
+          width="100%"
+          height={isLargerThan600 ? "5.6rem" : "3.2rem"}
+          justifyContent="flex-end"
+        >
           <Button
             width="11.6rem"
             height="100%"

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Text, Image } from "@chakra-ui/react";
+import { Flex, Text, Image, useMediaQuery } from "@chakra-ui/react";
 import { connect } from "react-redux";
 import { getCountry } from "../actions";
 import quizImage from "../assets/static/quizImage.svg";
@@ -18,6 +18,7 @@ const CountryQuiz = ({
     typeArrayQuestion[Math.floor(Math.random() * typeArrayQuestion.length)]
   );
   const [answers, setAnswers] = useState(["A", "B", "C", "D"]);
+  const [isLargerThan600] = useMediaQuery("(min-width: 600px)");
 
   useEffect(() => {
     function setRandomQuestions() {
@@ -47,17 +48,21 @@ const CountryQuiz = ({
     <>
       {" "}
       <Flex
-        width="46.4rem"
+        width={isLargerThan600 ? "46.4rem" : "28.2rem"}
         zIndex="2"
         justifyContent="flex-end"
         position="absolute"
-        top="14rem"
+        top={isLargerThan600 ? "14rem" : "6rem"}
         marginLeft="2rem"
       >
-        <Image src={quizImage} width="18.2rem" height="11.6rem" />
+        <Image
+          src={quizImage}
+          width={isLargerThan600 ? "18.2rem" : "12.1rem"}
+          height={isLargerThan600 ? "11.6rem" : "7.8rem"}
+        />
       </Flex>
       <Flex
-        width="46.4rem"
+        width={isLargerThan600 ? "46.4rem" : "28.2rem"}
         min-height="51.5rem"
         direction="column"
         borderRadius="2.4rem"
@@ -66,11 +71,11 @@ const CountryQuiz = ({
         {typeQuiz === "capital" ? (
           <Flex direction="column" margin="3.2rem">
             <Text
-              marginTop="2.7rem"
+              marginTop={isLargerThan600 ? "2.7rem" : "2.3rem"}
               fontFamily="Poppins"
               fontWeight="extrabold"
               color="#1D355D"
-              fontSize="2.4rem"
+              fontSize={isLargerThan600 ? "2.4rem" : "1.4rem"}
               lineHeight="3.6rem"
             >{`${country[0].capital} is the capital of`}</Text>
 
@@ -86,8 +91,8 @@ const CountryQuiz = ({
             <Flex direction="column">
               <Image
                 src={country[0].flag}
-                width="8.4rem"
-                height="5.4rem"
+                width={isLargerThan600 ? "8.4rem" : "6.4rem"}
+                height={isLargerThan600 ? "5.4rem" : "3.4rem"}
                 filter="drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.1));"
                 borderRadius="0.4rem"
               />
@@ -96,7 +101,7 @@ const CountryQuiz = ({
                 fontFamily="Poppins"
                 fontWeight="extrabold"
                 color="#1D355D"
-                fontSize="2.4rem"
+                fontSize={isLargerThan600 ? "2.4rem" : "1.4rem"}
                 lineHeight="3.6rem"
               >
                 Which country does these flag belong to?

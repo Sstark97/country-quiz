@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, Text, Spinner } from "@chakra-ui/react";
+import { Flex, Text, Spinner, useMediaQuery } from "@chakra-ui/react";
 import CountryQuiz from "../components/CountryQuiz";
 import FinalQuiz from "../components/FinalQuiz";
 import useGetRandomCountry from "../hooks/useGetRandomCountry";
@@ -10,6 +10,7 @@ const Main = ({ setCountry }) => {
   const { loading, response, nextQuiz } = useGetRandomCountry();
   const [finished, setFinished] = useState(false);
   const [renderFinal, setRenderFinal] = useState(false);
+  const [isLargerThan600] = useMediaQuery("(min-width: 600px)");
 
   if (!loading) {
     setCountry(response);
@@ -53,8 +54,8 @@ const Main = ({ setCountry }) => {
         <>
           <Text
             as="h2"
-            textAlign="start"
-            fontSize="3.6rem"
+            textAlign={isLargerThan600 ? "start" : "center"}
+            fontSize={isLargerThan600 ? "3.6rem" : "2rem"}
             fontWeight="bold"
             width="46.4rem"
             color="#F2F2F2"

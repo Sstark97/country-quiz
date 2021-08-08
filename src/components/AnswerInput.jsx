@@ -1,5 +1,11 @@
 import React from "react";
-import { InputGroup, Input, InputLeftElement, Text } from "@chakra-ui/react";
+import {
+  InputGroup,
+  Input,
+  InputLeftElement,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 
 const AnswerInput = ({
   letter,
@@ -8,6 +14,8 @@ const AnswerInput = ({
   clickAnswer,
   handleClickAnswerInParent,
 }) => {
+  const [isLargerThan600] = useMediaQuery("(min-width: 600px)");
+
   const handleClickAnswer = (letter) => {
     handleClickAnswerInParent(letter);
   };
@@ -39,14 +47,17 @@ const AnswerInput = ({
         marginLeft="1.9rem"
         height="100%"
         children={
-          <Text fontSize="2.4rem" lineHeight="3.6rem">
+          <Text
+            fontSize={isLargerThan600 ? "2.4rem" : "2rem"}
+            lineHeight="3.6rem"
+          >
             {letter}
           </Text>
         }
         marginRight="4.7rem"
       />
       <Input
-        fontSize="1.8rem"
+        fontSize={isLargerThan600 ? "1.8rem" : "1.5rem"}
         lineHeight="2.7rem"
         readOnly
         value={country}
