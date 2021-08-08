@@ -3,11 +3,12 @@ import { Flex, List, ListItem, Button } from "@chakra-ui/react";
 import AnswerInput from "../components/AnswerInput";
 import { v4 as uuidv4 } from "uuid";
 import { connect } from "react-redux";
-import { getCountry } from "../actions";
+import { getCountry, setAnswerCorrectCount } from "../actions";
 
 const AnswerForm = ({
   answers,
   getCountry,
+  setAnswerCorrectCount,
   handleClickNextInMain,
   handleFinishQuizz,
   finished,
@@ -24,6 +25,8 @@ const AnswerForm = ({
     setClickAnswer(true);
     if (answer.correct != true) {
       handleFinishQuizz();
+    } else {
+      setAnswerCorrectCount();
     }
   };
 
@@ -89,10 +92,14 @@ const AnswerForm = ({
   );
 };
 
-const mapStateToProps = (state) => ({ country: state.country });
+const mapStateToProps = (state) => ({
+  country: state.country,
+  answerCorrectCount: state.answerCorrectCount,
+});
 
 const mapDispatchToProps = {
   getCountry,
+  setAnswerCorrectCount,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnswerForm);

@@ -20,7 +20,7 @@ const reducer = (state, action) => {
                 answerCorrectCount: state.answerCorrectCount + 1
             }
         
-        case 'SET_ANSWER_CORRECT_COUNT':
+        case 'SET_RESET_ANSWER_COUNT':
             return {
                 ...state,
                 answerCorrectCount: 0
