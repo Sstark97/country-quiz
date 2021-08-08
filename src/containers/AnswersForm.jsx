@@ -26,7 +26,7 @@ const AnswerForm = ({
     answer.click = true;
     correct.click = true;
     setClickAnswer(true);
-    if (answer.correct != true) {
+    if (answer.correct !== true) {
       handleFinishQuizz();
     } else {
       setAnswerCorrectCount();
