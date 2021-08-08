@@ -8,6 +8,7 @@ import App from './pages/App';
 
 const initialState = {
   "country": [],
+  "answerCorrectCount": 0,
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

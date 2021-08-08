@@ -13,6 +13,18 @@ const reducer = (state, action) => {
                 ...state,
                 country: state.country
             }
+        
+        case 'SET_ANSWER_CORRECT_COUNT':
+            return {
+                ...state,
+                answerCorrectCount: state.answerCorrectCount + 1
+            }
+        
+        case 'SET_ANSWER_CORRECT_COUNT':
+            return {
+                ...state,
+                answerCorrectCount: 0
+            }
 
         default:
             return state;
