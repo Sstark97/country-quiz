@@ -10,6 +10,8 @@ const Layout = () => (
     height="100%"
     direction="column"
     backgroundImage={background}
+    max-width="100vw"
+    maxHeight="100vh"
   >
     <Flex width="100%" height="90%">
       <Main />

@@ -6,7 +6,13 @@ import quizImage from "../assets/static/quizImage.svg";
 import callingCodeData from "../data/callingCodeData";
 import AnswerForm from "../containers/AnswersForm";
 
-const CountryQuiz = ({ getCountry, country, handleClickNextInMain }) => {
+const CountryQuiz = ({
+  getCountry,
+  country,
+  handleClickNextInMain,
+  handleFinishQuizz,
+  finished,
+}) => {
   const [typeArrayQuestion] = useState(["capital", "flag"]);
   const [typeQuiz] = useState(
     typeArrayQuestion[Math.floor(Math.random() * typeArrayQuestion.length)]
@@ -71,6 +77,8 @@ const CountryQuiz = ({ getCountry, country, handleClickNextInMain }) => {
             <AnswerForm
               answers={answers}
               handleClickNextInMain={handleClickNextInMain}
+              handleFinishQuizz={handleFinishQuizz}
+              finished={finished}
             />
           </Flex>
         ) : (
@@ -96,6 +104,8 @@ const CountryQuiz = ({ getCountry, country, handleClickNextInMain }) => {
               <AnswerForm
                 answers={answers}
                 handleClickNextInMain={handleClickNextInMain}
+                handleFinishQuizz={handleFinishQuizz}
+                finished={finished}
               />
             </Flex>
           </Flex>

@@ -1,18 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { Flex, Text, Spinner } from "@chakra-ui/react";
 import CountryQuiz from "../components/CountryQuiz";
+import FinalQuiz from "../components/FinalQuiz";
 import useGetRandomCountry from "../hooks/useGetRandomCountry";
 import { connect } from "react-redux";
 import { setCountry } from "../actions";
 
 const Main = ({ setCountry }) => {
   const { loading, response, nextQuiz } = useGetRandomCountry();
+  const [finished, setFinished] = useState(false);
+  const [renderFinal, setRenderFinal] = useState(false);
 
   if (!loading) {
     setCountry(response);
   }
 
   const handleClickNextInMain = () => {
+    if (finished) {
+      console.log("Render: " + finished);
+      setRenderFinal(true);
+    } else {
+      nextQuiz();
+    }
+  };
+
+  const handleFinishQuizz = () => {
+    setFinished(true);
+  };
+
+  const handleResetQuizz = () => {
+    setFinished(false);
+    setRenderFinal(false);
     nextQuiz();
   };
 
@@ -45,7 +63,15 @@ const Main = ({ setCountry }) => {
           >
             Country Quiz
           </Text>
-          <CountryQuiz handleClickNextInMain={handleClickNextInMain} />
+          {renderFinal ? (
+            <FinalQuiz handleResetQuizz={handleResetQuizz} />
+          ) : (
+            <CountryQuiz
+              handleClickNextInMain={handleClickNextInMain}
+              handleFinishQuizz={handleFinishQuizz}
+              finished={finished}
+            />
+          )}
         </>
       )}
     </Flex>

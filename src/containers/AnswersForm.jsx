@@ -5,7 +5,13 @@ import { v4 as uuidv4 } from "uuid";
 import { connect } from "react-redux";
 import { getCountry } from "../actions";
 
-const AnswerForm = ({ answers, getCountry, handleClickNextInMain }) => {
+const AnswerForm = ({
+  answers,
+  getCountry,
+  handleClickNextInMain,
+  handleFinishQuizz,
+  finished,
+}) => {
   const [clickAnswer, setClickAnswer] = useState(false);
   useEffect(() => {
     getCountry();
@@ -16,6 +22,9 @@ const AnswerForm = ({ answers, getCountry, handleClickNextInMain }) => {
     answer.click = true;
     correct.click = true;
     setClickAnswer(true);
+    if (answer.correct != true) {
+      handleFinishQuizz();
+    }
   };
 
   const handleClickNext = () => {
